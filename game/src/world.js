@@ -11,6 +11,8 @@ import {
   COMBO_MAX,
   COMBO_STEP,
   DRAG,
+  GOLD_EVERY,
+  GOLD_RING_POINTS,
   LEVEL_RATE,
   LIVES,
   PLAYER_Z,
@@ -112,16 +114,21 @@ export function createWorld(random) {
       section += 1;
     }
     // Rings: one every RING_EVERY segments, offset sideways and up from the
-    // corridor so the pilot has to steer and climb for them.
+    // corridor so the pilot has to steer and climb for them. Every fifth
+    // ring is golden and pays GOLD_RING_POINTS instead of RING_POINTS.
     for (let n = RING_EVERY; n < segments.length - 10; n += RING_EVERY) {
       const seg = segments[n];
       const midX = (seg.p1.x + seg.p2.x) / 2;
       const midY = (seg.p1.y + seg.p2.y) / 2;
+      const ringNo = n / RING_EVERY;
+      const golden = ringNo % GOLD_EVERY === 0;
       seg.ring = {
         x: midX + random.range(-ROAD_WIDTH * 0.55, ROAD_WIDTH * 0.55),
         y: midY + random.range(600, 3400),
         z: seg.p1.z + SEGMENT_LENGTH / 2,
         radius: RING_RADIUS,
+        golden,
+        points: golden ? GOLD_RING_POINTS : RING_POINTS,
         passed: false,
         hit: false,
       };
@@ -139,6 +146,7 @@ export function createWorld(random) {
     heading: 0,
     score: 0,
     rings: 0,
+    goldRings: 0,
     misses: 0,
     combo: 1,
     lives: LIVES,
@@ -178,6 +186,7 @@ export function createWorld(random) {
     state.heading = 0;
     state.score = 0;
     state.rings = 0;
+    state.goldRings = 0;
     state.misses = 0;
     state.combo = 1;
     state.lives = LIVES;
@@ -270,10 +279,13 @@ export function createWorld(random) {
         if (Math.hypot(dx, dy) <= ring.radius + RING_HIT_SLACK) {
           ring.hit = true;
           state.rings += 1;
-          const gain = Math.round(RING_POINTS * state.combo * (0.5 + state.speed / SPEED_MAX));
+          if (ring.golden) state.goldRings += 1;
+          const gain = Math.round(ring.points * state.combo * (0.5 + state.speed / SPEED_MAX));
           state.score += gain;
           state.combo = Math.min(COMBO_MAX, state.combo + COMBO_STEP);
-          state.message = `Ring +${gain} — ${state.timeLeft.toFixed(0)}s left.`;
+          state.message = ring.golden
+            ? `Golden ring +${gain}! — ${state.timeLeft.toFixed(0)}s left.`
+            : `Ring +${gain} — ${state.timeLeft.toFixed(0)}s left.`;
           events |= EVENT_RING;
         } else {
           state.misses += 1;

@@ -15,8 +15,8 @@ the clock.
 - **Climb and sink** with ↑ ↓ or W / S (or move the mouse up and down).
 - **Throttle** with Shift (full) and Control (cut back).
 - **Rings** pay points: 100 × your combo × a speed factor. Miss one and
-  the combo resets. The clock is a fixed 90 seconds, so the rings are a
-  race against it.
+  the combo resets. Every fifth ring is golden and pays 250 instead — chase
+  them. The clock is a fixed 90 seconds, so the rings are a race against it.
 - **The ground** is the only thing that can kill you. Touch it and you lose
   one of three lives; lose all three, or run the 90-second clock out, and
   the flight is over.
@@ -28,10 +28,13 @@ and the best score is kept in your browser.
 ## The view
 
 A pseudo-3D chase camera behind the aircraft: a sunset sky with the sun low
-over layered mountains, fields and a lit runway rolling away below, the
-rings glowing ahead. The HUD carries altitude and vertical speed, speed and
-throttle, a compass tape, score, rings and combo, the clock, three lives,
-and an attitude indicator that banks and pitches with the aircraft.
+over snow-capped mountains, stars and birds overhead, fields, forest and a
+winding river rolling away below with trees and houses beside the lit runway,
+the rings glowing ahead — golden ones wear a star. At high speed the air
+itself streaks past. The HUD carries altitude and vertical speed, speed and
+throttle, a compass tape, score, rings, golden rings and combo, the clock,
+three lives, and an attitude indicator that banks and pitches with the
+aircraft.
 
 ## Run it
 

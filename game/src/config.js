@@ -51,6 +51,9 @@ export const LEVEL_RATE = 0.6;
 
 /** Ring scoring. */
 export const RING_POINTS = 100;
+/** Every fifth ring is golden and pays this much instead. */
+export const GOLD_RING_POINTS = 250;
+export const GOLD_EVERY = 5;
 export const RING_RADIUS = 620;
 /** A ring counts when the aircraft passes its plane this close, world units. */
 export const RING_HIT_SLACK = 260;
@@ -72,11 +75,26 @@ export const GROUND_A = '#3f6b2f';
 export const GROUND_B = '#55702e';
 export const FIELD_A = '#8a6b2f';
 export const FIELD_B = '#6b7a2e';
+/** Extra terrain: forest, meadow and open water, for ground variety. */
+export const FOREST_A = '#2c5426';
+export const FOREST_B = '#264d22';
+export const MEADOW_A = '#6f8a35';
+export const MEADOW_B = '#64802f';
+export const WATER_A = '#2e6b9e';
+export const WATER_B = '#2a5f8f';
+export const RIVER = '#4a90c8';
+export const TREE = '#1d4a1d';
+export const TREE_TRUNK = '#5a3a22';
+export const HOUSE_WALL = '#e8d9b0';
+export const HOUSE_ROOF = '#8a3d2e';
+export const WINDOW_LIT = '#ffd97a';
 export const RUNWAY = '#3a3f4a';
 export const RUNWAY_EDGE = '#f5d76e';
 export const RUNWAY_DASH = '#f2f2e8';
 export const RING_COLOR = '#37f2d4';
 export const RING_GLOW = '#19b8a6';
+export const GOLD_RING_COLOR = '#ffd34d';
+export const GOLD_RING_GLOW = '#ff9a3d';
 export const HUD_PANEL = 'rgba(8, 12, 24, 0.55)';
 export const HUD_TEXT = '#eaf6ff';
 export const HUD_AMBER = '#ffc357';
